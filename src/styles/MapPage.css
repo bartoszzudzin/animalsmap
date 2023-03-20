@@ -1,0 +1,262 @@
+.mapPage{
+    background-color: #fff;
+    width: 100vw;
+    height: 100vh;
+}
+.mapHeader{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #ffc600;
+    padding: 20px;
+    height: 105px;
+    position: relative;
+    z-index: 2;
+    border-bottom: 1px solid black;
+}
+
+.mapHeader>a{
+    font-size: 30px;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    text-decoration: none;
+    color: black;
+}
+.mapHeader>img{
+    transform: scaleX(-100%);
+    width: 60px;
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+}
+.red{
+    color: red;
+}
+.blue{
+    color: rgb(0, 81, 255);
+}
+.map{
+    background-color: #ddd;
+    position: absolute;
+    width: 100vw;
+    top: 100px;
+    height: calc(100vh - 220px);
+}
+.buttons{
+    position: absolute;
+    bottom: 20px;
+    width: 100vw;
+    background-color: yellow;
+    z-index: 4;
+}
+.buttons>button{
+    width: 100px;
+    height: 100px;
+    border: none;
+    position: absolute;
+}
+.buttons>button:nth-child(1){
+    background-color: #ff5c5c;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    bottom: 0;
+    left: 0;
+}
+.buttons>button:nth-child(2){
+    background-color: #5cb4ff;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    bottom: 0;
+    right: 0;
+}
+.buttons>button>svg{
+    color: white;
+    font-size: 50px;
+}
+.mainMenuButton{
+    position: absolute;
+    z-index: 1;
+    top: 105px;
+    right: 0;
+    background-color: #ffd12a;
+    padding: 10px;
+    border-bottom-left-radius: 10px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    border-top: none;
+    border-right: none;
+}
+.mainMenuButton.arrow{
+    border: none;
+    top: 0;
+    left: 0;
+    width: 50px;
+}
+.mainMenuButton>svg{
+    font-size: 30px;
+    color: black;
+}
+.mainMenu{
+    width: 100vw;
+    background-color: #ffd12a;
+    height: calc(100vh - 105px);
+    position: absolute;
+}
+.mainMenu>p{
+    margin: 10px 60px;
+    font-size: 20px;
+}
+
+.mainMenu>.block{
+    border-top: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+.block{
+    margin-top: 15px;
+}
+.block>.row{
+    display: flex;
+    flex-direction: row;
+}
+.row>a{
+    flex-basis: 50%;
+    background-color: #ffcf23;
+    height: 265px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgb(41, 41, 41);
+    text-decoration: none;
+}
+.row>a>svg{
+    font-size: 42px;
+}
+.block>.row:nth-child(1)>a:nth-of-type(2){
+    background-color: #ffd43a;
+}
+.block>.row:nth-child(2)>a:nth-of-type(1){
+    background-color: #ffd951;
+}
+.block>.row:nth-child(2)>a:nth-of-type(2){
+    background-color: #ffdf69;
+}
+.block>.row:nth-child(3)>a:nth-of-type(1){
+    background-color: #fde382;
+}
+.block>.row:nth-child(3)>a:nth-of-type(2){
+    background-color: #ffea9f;
+}
+.menuAdd{
+    width: 100vw;
+    height: 570px;
+    position: relative;
+    padding: 10px;
+    z-index: 99999;
+}
+.menuAdd>i.errorInfo{
+    font-size: 14px;
+    color: black;
+}
+.menuAdd.Lost{
+    background-color: #ff5c5c;
+}
+.menuAdd.Found{
+    background-color: #5cb4ff;
+    height: 600px;
+    z-index: 9999;
+}
+.closeWindow{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    border: none;
+}
+.closeWindow>svg{
+    font-size: 26px;
+    margin: 10px 10px;
+    color: white;
+}
+.menuAdd>p:nth-child(2){
+    text-align: center;
+    margin-top: 25px;
+    color: white;
+    font-size: 20px;
+}
+.menuAdd>form{
+    margin-top: 15px;
+    width: 90%;
+}
+.menuAdd>form>label{
+    margin-top: 20px;
+    color: white;
+    line-height: 40px;
+}
+.menuAdd>form>label>input{
+    float: right;
+    border: none;
+    height: 30px;
+    border-radius: 5px;
+    padding: 5px;
+}
+.menuAdd>form>input[type="submit"]{
+    margin-top: 15px;
+    margin-left: 155px;
+    padding: 10px;
+    width: 90px;
+    border: none;
+    border-radius: 5px;
+}
+.fileBtn{
+    margin-left: 50px;
+    margin-bottom: 20px;
+    border: none;
+    background-color: #ddd;
+    color: black;
+}
+
+@media (min-width: 768px) and (orientation: portrait){
+    .menuAdd>form>label>input{
+        float: center;
+    }
+    .menuAdd>form>label{
+        font-size: 22px;
+    }
+    .menuAdd>p:nth-child(2){
+        font-size: 24px;
+    }
+    .menuAdd>form>input[type="submit"]{
+        margin-top: 15px;
+        margin-left: 500px;
+        border-radius: 5px;
+    }
+}
+
+@media (min-width: 768px) and (orientation: landscape){
+    .buttons{
+        background-color: transparent;
+    }
+    .menuAdd{
+        width: 50vw;
+        height: 570px;
+        position: relative;
+        padding: 10px;
+        z-index: 99999;
+    }
+    .menuAdd.Lost{
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+    .menuAdd.Found{
+        margin-left: 50%;
+        height: 600px;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+    }
+    .menuAdd>form>input[type="submit"]{
+        margin-top: 50px;
+        margin-left: 800px;
+    }
+}

@@ -1,0 +1,71 @@
+.markerInfo{
+    position: absolute;
+    width: 200px;
+    bottom: 140%;
+    left: -230%;
+    background-color: rgba(65, 65, 65, 0.9);
+    padding: 5px;
+    height: 330px;
+    color: white;
+    z-index: 999;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+.marker{
+    position: relative;
+}
+.myMarker{
+    width: 32px;
+    border-radius: 50%;
+}
+.triangle{
+    position: absolute;
+    bottom: -5%;
+    left: 35%;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 20px 20px 0px 20px;
+    border-color: rgb(65, 65, 65) transparent transparent transparent;
+}
+.markerInfo>img{
+    width: 180px;
+    margin: 10px 5px;
+}
+.markerInfo>p:nth-child(2){
+    text-align: center;
+    font-size: 18px;
+    margin-top: 5px;
+}
+.markerInfo>p:nth-child(4){
+    text-align: center;
+}
+.petDesc{
+    padding: 10px;
+    margin-top: 10px;
+    background-color: rgb(102, 102, 102);
+    border-radius: 10px;
+}
+a.petInfo{
+    position: absolute;
+    bottom: 10px;
+    left: 70px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffc600;
+    text-decoration: none;
+    color: black;
+}
+.locTags>strong:nth-child(1){
+    background-color: orangered;
+    padding: 2px;
+    border-radius: 3px;
+}
+.locTags>strong:nth-child(2){
+    background-color: rgb(255, 153, 0);
+    padding: 2px;
+    border-radius: 3px;
+    color: black;
+    margin-left: 3px;
+}
