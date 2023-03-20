@@ -22,7 +22,6 @@ const Markers = (props) =>{
     const [showMore, setShowMore] = useState(false);
     const [markerIndex, setMarkerIndex] = useState(props.style);
     const [imageUrl, setImageUrl] = useState('');
-    const [imageVisible, setImageVisible] = useState(false);
 
     const handleShowMore = () =>{
         setShowMore(prevValue => !prevValue);
@@ -30,7 +29,6 @@ const Markers = (props) =>{
             setMarkerIndex({
                 zIndex: 999,
             })
-            setImageVisible(false);
         }else if(showMore===true){
             setMarkerIndex({
                 zIndex: 1,
@@ -66,7 +64,6 @@ const Markers = (props) =>{
                 .then(blob => {
                     const url = URL.createObjectURL(blob);
                     setImageUrl(url);
-                    setImageVisible(true);
                 })
                 .catch(err => console.log(err));
     }, [showMore])
