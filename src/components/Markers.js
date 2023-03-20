@@ -23,7 +23,6 @@ const Markers = (props) =>{
     const [markerIndex, setMarkerIndex] = useState(props.style);
     const [imageUrl, setImageUrl] = useState('');
     const [imageVisible, setImageVisible] = useState(false);
-    // const [dataFetched, setDataFetched] = useState(false);
 
     const handleShowMore = () =>{
         setShowMore(prevValue => !prevValue);
