@@ -20,6 +20,7 @@ const WelcomePage = () =>{
                 </div>
                 <div className='navigation'>
                     <NavLink to="/map">Przejdź do mapy</NavLink>
+                    <NavLink to="/about">Czy jest Animals Map ?</NavLink>
                 </div>
             </div>
     );

@@ -5,7 +5,7 @@
     left: -230%;
     background-color: rgba(65, 65, 65, 0.9);
     padding: 5px;
-    height: 330px;
+    height: auto;
     color: white;
     z-index: 999;
     border-radius: 10px;
@@ -48,13 +48,20 @@
 }
 a.petInfo{
     position: absolute;
-    bottom: 10px;
-    left: 70px;
+    bottom: -25px;
+    left: 70%;
     padding: 5px;
     border: none;
-    border-radius: 5px;
-    background-color: #ffc600;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: rgb(65, 65, 65);
     text-decoration: none;
+    color: white;
+    z-index: -1;
+    transition: .3s;
+}
+a.petInfo:hover{
+    background-color: #ffc600;
     color: black;
 }
 .locTags>strong:nth-child(1){

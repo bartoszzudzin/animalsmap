@@ -6,6 +6,7 @@ import MapPage from '../pages/MapPage';
 import ErrorPage from '../pages/ErrorPage';
 import AnnoucementPage from '../pages/AnnoucementPage';
 import SearchPage from '../pages/SearchPage';
+import AboutPage from '../pages/AboutPage';
 
 const Page = () =>{
     return (
@@ -15,6 +16,7 @@ const Page = () =>{
             <Route path="/map" element={<MapPage />} />
             <Route path="/annoucement/:id" element={<AnnoucementPage />} />
             <Route path="/search" element={<SearchPage />} />
+            <Route path="/about" element={<AboutPage />} />
             <Route path="*" element={<ErrorPage />} />
         </Routes>
     </BrowserRouter>

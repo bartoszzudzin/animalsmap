@@ -54,7 +54,7 @@
 }
 
 .navigation a:nth-of-type(1){
-    margin-top: 150px;
+    margin-top: 20px;
 }
 
 .navigation a{
@@ -67,6 +67,9 @@
     text-decoration: none;
     color: black;
 }
+.navigation:nth-last-child(1){
+        margin-top: 10px;
+    }
 
 .navigation a:nth-child(3){
     background-color: #fef9bf;
@@ -153,7 +156,7 @@
         font-size: 36px;
     }
     .navigation a{
-        margin-bottom: 50px;
+        margin-bottom: 10px;
         font-size: 26px;
         width: 30%;
     }    
