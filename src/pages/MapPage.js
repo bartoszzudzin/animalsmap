@@ -308,8 +308,8 @@ const MapPage = () => {
                                 <input type="text" placeholder='Ulica' value={street} onChange={handleSetStreet}/>
                             </label><br /><br />
                             <label>
-                                Dodaj zdjęcie:
-                                <input className='fileBtn' type="file" name="image" ref={fileRefLost} accept=".jpeg, .png, .jpg"/>
+                                Dodaj zdjęcie (max 60kb):
+                                <input className='fileBtn' type="file" name="image" ref={fileRefLost} accept=".jpeg, .png, .jpg" size="50048576"/>
                             </label><br />
                             <label>Osoba do kontaktu:<br />
                                 <input type="text" placeholder='Imię' value={contactPerson} onChange={handleContactPerson}/><br />
@@ -342,8 +342,8 @@ const MapPage = () => {
                                 <input type="text" placeholder='ulica' value={street} onChange={handleSetStreet}/>
                             </label><br /><br /><br />
                             <label>
-                                Dodaj zdjęcie:
-                                <input className='fileBtn' type="file" name="image" ref={fileRefFound} accept="image/jpeg"/>
+                                Dodaj zdjęcie (max 60kb):
+                                <input className='fileBtn' type="file" name="image" ref={fileRefFound} accept="image/jpeg" size="50048576"/>
                             </label><br />
                             <label>Osoba do kontaktu:<br />
                                 <input type="text" placeholder='Imię' value={contactPerson} onChange={handleContactPerson}/><br />

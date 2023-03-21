@@ -14,6 +14,14 @@ app.use(cors());
 const PORT = 5000;
 const uri = process.env.MONGODB_URI;
 
+// ustawienie limitu na 10 MB
+const jsonParser = bodyParser.json({ limit: '100mb' });
+const urlencodedParser = bodyParser.urlencoded({ limit: '100mb', extended: false });
+
+// użyj parserów do przetwarzania żądań
+app.use(jsonParser);
+app.use(urlencodedParser);;
+
 app.use(express.json());
 
 app.listen(PORT, () =>{
