@@ -12,7 +12,7 @@ const setData = require('./setData');
 app.use(cors());
 
 const PORT = 5000;
-const uri = 'mongodb+srv://zudzinbartosz:1567232--yY@cluster0.pfqdljf.mongodb.net/test?retryWrites=true&w=majority';
+const uri = process.env.MONGODB_URI;
 
 app.use(express.json());
 
