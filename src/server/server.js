@@ -16,7 +16,7 @@ app.use(cors());
 app.use(cookieParser());
 
 const PORT = 5000;
-const uri = "mongodb+srv://zudzinbartosz:1567232--yY@cluster0.pfqdljf.mongodb.net/test?retryWrites=true&w=majority"
+const uri = URI;
 
 const store = new MongoDBStore({
     uri: uri,
@@ -24,7 +24,7 @@ const store = new MongoDBStore({
 });
   
 app.use(session({
-    secret: 'your-secret-key',
+    secret: 'XXX',
     resave: false,
     saveUninitialized: true,
     store: store, // przechowuj sesję w MongoDBStore

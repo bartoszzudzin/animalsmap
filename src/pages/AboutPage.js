@@ -10,7 +10,7 @@ const AboutPage = () =>{
 
                 <div className='aboutMsg'>
                     <p>Inicjatywa <strong>AnimalsMap</strong> jest prosta.
-                    Aplikacja ma na celu ułatwić znalezienie zwierzakom swoich właścicieli. Poprzez dodawanie odpowiednich pinezek do mapy, możesz dodawać ogłoszenie o zwierzakach które się błąkają w twojej okolicy lub pinezkę "zagubiony", jeżeli twój pupil zagubił się gdzieś w okolicy.</p>
+                    Aplikacja ma na celu ułatwić znalezienie zwierzakom swoich właścicieli. Poprzez dodawanie odpowiednich pinezek do mapy, możesz dodawać ogłoszenie o zwierzakach które się błąkają w twojej okolicy lub pinezkę "zagubiony", jeżeli twój pupil gdzieś się zaguił.</p>
                     <img src={found_ico} alt="background" className='backgroundImage' />
                 </div>
                 <div className='navigation'>
