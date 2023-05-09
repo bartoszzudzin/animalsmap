@@ -66,7 +66,7 @@ function getData(app, mongoose, MarkersScheme, UsersScheme, MessagesScheme){
   app.get('/search/:phrase', async (req, res) => {
       try {
         const tags = req.params.phrase.split(" ");
-        console.log(tags);
+        // console.log(tags);
         const queries = [];
     
         for (let i = 0; i < tags.length; i++) {
@@ -83,7 +83,7 @@ function getData(app, mongoose, MarkersScheme, UsersScheme, MessagesScheme){
         const filteredResults = mergedResults.filter((el, index, arr) => {
           return index === arr.findIndex((t) => t.id === el.id);
         });
-        console.log("wynik =>",filteredResults);
+        // console.log("wynik =>",filteredResults);
         res.send(filteredResults);
       } catch (err) {
         console.log(err);
@@ -107,7 +107,7 @@ function getData(app, mongoose, MarkersScheme, UsersScheme, MessagesScheme){
       const doc = await Collection.findOne({id: id, addedBy: email});
       if (!doc) {
         res.sendStatus(404);
-        console.log("Nie znalazłem odpowiedniego elementu");
+        // console.log("Nie znalazłem odpowiedniego elementu");
         return;
       }
       res.sendStatus(204);
@@ -126,7 +126,6 @@ function getData(app, mongoose, MarkersScheme, UsersScheme, MessagesScheme){
         messages = await MsgCollection.findOne({from: to, to: from});
         if(!messages){
           res.sendStatus(404);
-          console.log("Brak wiadomości");
           return
         }
       }
