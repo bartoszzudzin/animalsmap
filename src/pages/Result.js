@@ -42,14 +42,14 @@ const Result = (props) =>{
             <div className='annInfo'>
                 <p>{props.info}</p>
                     <i>{props.character}</i>
-                        <NavLink to={{
+            </div>
+            <NavLink to={{
                             pathname: `/annoucement/${props.id}`,
                                 state: {
                                 id: props.id
                             }
                         }} 
                         className='annHyperlink'>Więcej</NavLink>
-            </div>
         </div>
     )
 }

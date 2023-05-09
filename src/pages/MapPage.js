@@ -3,11 +3,12 @@ import { NavLink } from 'react-router-dom';
 import '../styles/MapPage.css';
 import Header from '../layouts/Header';
 import Markers from '../components/Markers';
+import UserPanel from '../components/UserPanel';
+import PinsPanel from '../components/PinsPanel';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapPin } from '@fortawesome/free-solid-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 import Map from 'react-map-gl';
 import maplibregl from 'mapbox-gl';
@@ -18,189 +19,117 @@ import found_pet from '../images/found_pet.png';
 
 
 
-
 const MapPage = () => {
 
-    const handleShowMenuLost = () =>{
-        setShowMenuLost(prevValue => !prevValue);
-        setShowMenu(prevValue => !prevValue);
-    }
-    const handleShowMenuFound = () =>{
-        setShowMenuFound(prevValue => !prevValue);
-        setShowMenu(prevValue => !prevValue);
-    }
-
-    const [petName, setPetName] = useState('');
-    const [petRace, setPetRace] = useState('');
-    const [petInfo, setPetInfo] = useState('');
-    const [city, setCity] = useState('');
-    const [street, setStreet] = useState('');
-    const [character, setCharacter] = useState('');
-    const [contactPerson, setContactPerson] = useState('');
-    const [contactPhone, setContactPhone] = useState('');
-    const [error, setError] = useState('');
-    const [img, setImg] = useState('');
-
-    const [showMenuLost, setShowMenuLost] = useState(false);
-    const [showMenuFound, setShowMenuFound] = useState(false);
-    const [showMenu, setShowMenu] = useState(false);
+    const [showUserPrompt, setShowUserPrompt] = useState(false);
 
     const mapRef = useRef();
-    const fileRefLost = useRef();
-    const fileRefFound = useRef();
 
-    const addLostPin = (e) =>{
-        e.preventDefault();
+    const [email, setEmail] = useState(null);
+    const [pass, setPass] = useState(null);
+    const [isLogged, setIsLogged] = useState(false);
+    const [userName, setUserName] = useState(null);
+    const [userEmail, setUserEmail] = useState(null);
+    const [nickname, setNickname] = useState(null);
 
-        fetch(`https://nominatim.openstreetmap.org/search?q=${street},${city}&format=json`)
-            .then(response => response.json())
-            .catch(error => console.log(error))
-            .then(data => {
-                const [firstResult] = data;
-                const id = Math.floor(Math.random() * 999999);
-                if(firstResult){
-                const {lat, lon} = firstResult;
+    const [err, setErr] = useState('');
 
-                const file = fileRefLost.current.files[0];
-                const fileReader = new FileReader();
-                fileReader.readAsDataURL(file);
-
-                fileReader.onloadend = () =>{
-                    const postImage = fileReader.result;
-                    const dane = {
-                        id: id,
-                        long: lon,
-                        lat: lat,
-                        street: street,
-                        city: city,
-                        icon: false,
-                        name: petName,
-                        race: petRace,
-                        info: petInfo,
-                        status: "lost",
-                        character: character,
-                        contactPerson,
-                        contactPhone,
-                        image: postImage,
-                    }
-
-                    console.log(dane);
-    
-                    const request = new Request('https://animalsmap.herokuapp.com/addmarker', {
-                        method: 'POST',
-                        body: JSON.stringify(dane),
-                        headers: new Headers({ 'Content-Type' : 'application/json'}),
-                    });
-    
-                    
-                    fetch(request)
-                        .then(response => console.log(response))
-                        .catch(error => console.log(error));
-
-                }
-                resetValues();
-                setShowMenuLost(prevValue => !prevValue);
-                window.location.reload()
-                }else{
-                    setError('Wprowadzono złą nazwę miejscowości lub ulicy');
-                }
-            })
+    const handleEmail = (e) =>{
+        setEmail(e.target.value);
     }
-    const addFoundPin = (e) =>{
+    const handlePass = (e) =>{
+        setPass(e.target.value);
+    }
+
+    useEffect(() => {
+        checkSession();      
+    }, []);
+
+    const handleLogin = (e) =>{
         e.preventDefault();
-        fetch(`https://nominatim.openstreetmap.org/search?q=${street},${city}&format=json`)
-            .then(response => response.json())
-            .catch(error => console.log(error))
-            .then(data => {
-                const [firstResult] = data;
-                if(firstResult){
-                const {lat, lon} = firstResult;
-                const id = Math.floor(Math.random() * 999999);
+        fetch('/login', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: email,
+            password: pass,
+        })
+        })
+        .then(response => {
+            if (response.ok) {
+                return checkSession();
+            } else {
+                setErr('Wprowadzono błędny adres e-mail lub hasło');
+                throw new Error('Błąd logowania');
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
 
-                const file = fileRefFound.current.files[0];
-                const fileReader = new FileReader();
-                fileReader.readAsDataURL(file);
+    }
 
-                fileReader.onloadend = () =>{
-                    const postImage = fileReader.result;
-                    const dane = {
-                        id: id,
-                        long: lon,
-                        lat: lat,
-                        street: street,
-                        city: city,
-                        icon: true,
-                        name: petName,
-                        race: petRace,
-                        info: petInfo,
-                        status: "found",
-                        character: character,
-                        contactPerson,
-                        contactPhone,
-                        image: postImage,
-                    }
-                    const request = new Request('https://animalsmap.herokuapp.com/addmarker', {
-                        method: 'POST',
-                        body: JSON.stringify(dane),
-                        headers: new Headers({ 'Content-Type' : 'application/json'}),
-                    });
+    const handleLogout = () => {
+        fetch('/logout', {
+          method: 'POST',
+          credentials: 'include', // Przekazywanie ciasteczek
+        })
+        .then(response => {
+          if (response.ok) {
+            setIsLogged(false); // Ustawienie stanu na wylogowany
+            setUserName(null); // Wyczyszczenie nazwy użytkownika
+          } else {
+            console.error(response.statusText);
+          }
+        })
+        .catch(error => {
+          console.error(error);
+        });
+      };
 
-                    
-                    fetch(request)
-                        .then(response => console.log(response))
-                        .catch(error => console.log(error));
-                }
-
-                resetValues();
-                setShowMenuFound(prevValue => !prevValue);
-                window.location.reload()
-                }else{
-                    setError('Wprowadzono złą nazwę miejscowości lub ulicy');
-                }
-            })
+    const checkSession = () => {
+        fetch('/checkSession', {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                // window.location.href = '/map';
+                setIsLogged(true)
+                return response.json();
+            } else {
+                setIsLogged(false);
+                setUserName(null);
+                setUserEmail(null);
+                console.log("Użytkownik nie zalogowany");
+            }
+        })
+        .then(data => {
+            setUserName(data ? data.name : null);
+            setUserEmail(data ? data.email : null);
+            setNickname(data ? data.nickname : null);
+        })
+        .catch(error => {
+            console.error(error);
+            setIsLogged(false);
+            setUserName(null);
+            setUserEmail(null);
+        });
     };
 
-
-    const handleSetName = (e) =>{
-        setPetName(e.target.value);
-    }
-    const handleSetInfo = (e) =>{
-        setPetInfo(e.target.value);
-    }
-    const handleSetCharacter = (e) =>{
-        setCharacter(e.target.value);
-    }
-    const handleChangeRace = (e) =>{
-        setPetRace(e.target.value);
-    }
-    const handleSetCity = (e) =>{
-        setCity(e.target.value);
-    }
-    const handleSetStreet = (e) =>{
-        setStreet(e.target.value);
-    }
-    const handleContactPerson = (e) =>{
-        setContactPerson(e.target.value);
-    }
-    const handleContactPhone = (e) =>{
-        setContactPhone(e.target.value);
-    }
-
-    const resetValues = () =>{
-        setPetName('');
-        setPetInfo('');
-        setCity('');
-        setStreet('');
-        setCharacter('');
-        setContactPerson('');
-        setContactPhone('');
-        setError('');
-        setImg(null);
+    const handleUserPrompt = () =>{
+        setShowUserPrompt(prevValue => !prevValue);
     }
 
     const [markers, setMarkers] = useState([]);
     useEffect(() =>{
-        fetch("https://animalsmap.herokuapp.com/markers")
+        fetch("/markers")
             .then(response => response.json())
             .then(data => {
                 const arr = [];
@@ -258,6 +187,7 @@ const MapPage = () => {
         });
 
     }
+
     return(
         <div className='mapPage'>
             <Header />
@@ -277,89 +207,31 @@ const MapPage = () => {
                 {allMarkers}
             </Map>
         </div>
-
-            <div className='buttons'>
-                {showMenu ? null : 
-                    <>
-                        <button onClick={handleShowMenuLost}><FontAwesomeIcon icon={faMagnifyingGlass} /></button>
-                        <button onClick={handleShowMenuFound}><FontAwesomeIcon icon={faMapPin} /></button>
-                    </> 
-                }
-
-                {showMenuLost ? 
-                    <div className='menuAdd Lost'>
-                        <i className='errorInfo'>{error}</i>
-                        <p>Dodaj pinezkę, zagubionego zwierzęcia:</p>
-                        <button className='closeWindow' onClick={handleShowMenuLost}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
-                        <form action="/upload" method='POST' onSubmit={addLostPin} encType="multipart/form-data">
-                            <label>Imię zwierzęcia:
-                                <input type="text" value={petName} onChange={handleSetName}/>
-                            </label><br />
-                            <label>Krótka informacja:
-                                <input type="text" placeholder='' value={petInfo} onChange={handleSetInfo}/>
-                            </label><br />
-                            <label>Rasa zwierzęcia:
-                                <input type="text" placeholder='np. Jamnik' value={petRace} onChange={handleChangeRace}/>
-                            </label><br />
-                            <label>Ostatnio widziane:
-                                <input type="text" placeholder='Miasto' value={city} onChange={handleSetCity}/><br />
-                                <input type="text" placeholder='Ulica' value={street} onChange={handleSetStreet}/>
-                            </label><br /><br />
-                            <label>
-                                Dodaj zdjęcie (max 60kb):
-                                <input className='fileBtn' type="file" name="image" ref={fileRefLost} accept=".jpeg, .png, .jpg" size="50048576"/>
-                            </label><br />
-                            <label>Osoba do kontaktu:<br />
-                                <input type="text" placeholder='Imię' value={contactPerson} onChange={handleContactPerson}/><br />
-                                <input type="text" placeholder='(+48) Numer telefonu' value={contactPhone} onChange={handleContactPhone}/>
-                            </label>
-                            <input type="submit" value="Dodaj" />
-                        </form>
-                    </div>
-                : ''}
-
-                {showMenuFound ? 
-                    <div className='menuAdd Found'>
-                        <i className='errorInfo'>{error}</i>
-                        <p>Dodaj pinezkę, znalezionego zwierzęcia:</p>
-                        <button className='closeWindow' onClick={handleShowMenuFound}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
-                        <form action="/upload" method='POST' onSubmit={addFoundPin} encType="multipart/form-data">
-                            <label>Krótka informacja:
-                                <input type="text" placeholder='' value={petInfo} onChange={handleSetInfo}/>
-                            </label><br />
-                            <label>Cechy szczególne:
-                                <input type="text" placeholder='Czarna sierść, białe łapki' value={character} onChange={handleSetCharacter}/>
-                            </label><br />
-                            <label>Rasa zwierzęcia:
-                                <input type="text" placeholder='np. Jamnik' value={petRace} onChange={handleChangeRace}/>
-                            </label><br />
-                            <label>Lokalizacja:
-                                <input type="text" placeholder='Miasto' value={city} onChange={handleSetCity}/><br />
-                                <input type="text" placeholder='ulica' value={street} onChange={handleSetStreet}/>
-                            </label><br /><br /><br />
-                            <label>
-                                Dodaj zdjęcie (max 60kb):
-                                <input className='fileBtn' type="file" name="image" ref={fileRefFound} accept="image/jpeg" size="50048576"/>
-                            </label><br />
-                            <label>Osoba do kontaktu:<br />
-                                <input type="text" placeholder='Imię' value={contactPerson} onChange={handleContactPerson}/><br />
-                                <input type="text" placeholder='(+48) Numer telefonu' value={contactPhone} onChange={handleContactPhone}/>
-                            </label>
-                            <input type="submit" value="Dodaj" />
-                        </form>
-                    </div>
-                : ''}
-            </div>
+            {isLogged ? 
+                <PinsPanel 
+                    userEmail={userEmail}
+                    nickname={nickname}
+                /> 
+                : null}
             <NavLink className="mainMenuButton" to="/search">
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
             </NavLink>
+            <div className='userMenu' onClick={handleUserPrompt}>
+                <FontAwesomeIcon icon={faUser} />
+            </div>
+            {showUserPrompt ? 
+                <UserPanel
+                    isLogged={isLogged}
+                    closeFunction={handleUserPrompt}
+                    userName={userName}
+                    logOutFunction={handleLogout}
+                    logInFunction={handleLogin}
+                    handleEmail={handleEmail}
+                    handlePass={handlePass}
+                    error={err}
+                /> : null}
         </div>
     )
 }
-
 
 export default MapPage;

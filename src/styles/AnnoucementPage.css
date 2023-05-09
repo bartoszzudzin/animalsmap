@@ -1,6 +1,4 @@
 .annoucementPage{
-    background: white;
-    background-size: 100%;
     height: 100vh;
     width: 100vw;
     box-sizing: border-box;
@@ -34,8 +32,8 @@
 }
 .hashtags>p{
     margin-top: 10px;
-    background-color: orangered;
-    color: white;
+    background-color: #ffc600;
+    color: black;
     padding: 5px;
     border-radius: 5px;
     text-align: center;
@@ -44,11 +42,11 @@
     margin-top: 5px;
 }
 .hashtags>p:nth-child(2){
-    background-color: rgb(255, 153, 0);
+    background-color: #ffc600;
     color: black;
 }
 .hashtags>p:nth-child(3){
-    background-color: rgb(255, 208, 0);
+    background-color: #ffc600;
     color: black;
 }
 p.found{
@@ -109,33 +107,98 @@ p.lost{
     margin-left: 1%;
 }
 .person{
-    background-color: greenyellow;
+    background-color: #ffc600;
     padding: 5px;
     border-radius: 10px;
 }
 .phone{
-    background-color: aquamarine;
+    background-color: #ffc600;
     padding: 5px;
     border-radius: 10px;
 }
 a.exit{
     position: absolute;
     z-index: 2;
-    top: 135px;
+    top: 105px;
     left: 0px;
     background-color: #ffc400;
     padding: 5px;
-    border-top-right-radius: 10px;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
     border-bottom-right-radius: 10px;
     /* border-right: 1px solid black;
     border-top: 1px solid black;
     border-bottom: 1px solid black; */
 }
+a.exit-chat{
+    position: fixed;
+    z-index: 2;
+    top: 0px;
+    left: 0px;
+    background-color: #ffc400;
+    padding: 5px;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-bottom-right-radius: 10px;
+}
 a.exit svg{
-    font-size: 40px;
-    color: white;
+    font-size: 35px;
+    color: black;
+}
+a.exit-chat svg{
+    font-size: 35px;
+    color: black;
 }
 
+textarea.text{
+    width: 100%;
+    height: 50px;
+    padding: 5px;
+    font-family: Arial;
+}
+
+input.inputs{
+    padding: 3px;
+    width: 170px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+input.inputs:nth-child(1){
+    margin-right: 10px;
+}
+input.inputs:nth-child(3){
+    margin-left: 5px;
+}
+
+button.save{
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    padding: 10px;
+    background-color: rgb(147, 255, 47);
+    border: none;
+}
+a.sendMsg{
+    text-align: center;
+    background-color: #ffc600;
+    padding: 10px;
+    position: relative;
+    height: 100px;
+    border-radius: 15px;
+    margin-left: 30%;
+    color: black;
+    text-decoration: none;
+}
+
+img.background{
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    left: -20%;
+    opacity: 0.4;
+    filter: blur(5px);
+}
 
 @media (min-width: 1024px){
     .annoucementPage{

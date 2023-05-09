@@ -1,0 +1,55 @@
+.userAnnPage{
+    max-width: 100vw;
+}
+.userAnn-title{
+    font-size: 22px;
+    text-align: center;
+    margin-top: 10px;
+}
+.ctrl-btn{
+    padding: 5px;
+    height: 30px;
+    border: none;
+    margin-right: 5px;
+    margin-top: 5px;
+    float: right;
+    background-color: #8edbff;
+    color: black;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+}
+p.user-email{
+    text-align: center;
+    margin: 30px 4%;
+    background-color: #ddd;
+    padding: 10px;
+    width: 90vw;
+    border-radius: 25px;
+}
+.user-input{
+    margin-left: 50%;
+    transform: translateX(-50%);
+    height: 30px;
+    padding: 3px;
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 10px;
+}
+.save-btn{
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
+    margin-bottom: 30px;
+    padding: 3px;
+    width: 70px;
+    background-color: #ffc600;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+p.resultMsgPositive{
+    text-align: center;
+    padding: 0;
+    background-color: rgb(155, 255, 168);
+}

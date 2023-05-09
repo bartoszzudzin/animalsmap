@@ -67,7 +67,7 @@ const Markers = (props) =>{
                 })
                 .catch(err => console.log(err));
     }, [showMore])
-    return(
+    return( 
         <>
             <Marker onClick={showMore ? null : props.handlerZoom} longitude={props.long} latitude={props.lat} style={markerIndex} className="marker">
                 <section ref={ref}>

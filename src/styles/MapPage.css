@@ -44,23 +44,23 @@
 }
 .buttons{
     position: absolute;
-    bottom: 20px;
+    bottom: 0;
     width: 100vw;
-    background-color: yellow;
     z-index: 4;
 }
 .buttons>button{
-    width: 100px;
+    width: 150px;
     height: 100px;
     border: none;
     position: absolute;
 }
 .buttons>button:nth-child(1){
-    background-color: #ff5c5c;
+    background-color: #5cb4ff;
+    border-top-left-radius: 25px;
     border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
     bottom: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%)
 }
 .buttons>button:nth-child(2){
     background-color: #5cb4ff;
@@ -133,39 +133,25 @@
 .row>a>svg{
     font-size: 42px;
 }
-.block>.row:nth-child(1)>a:nth-of-type(2){
-    background-color: #ffd43a;
-}
-.block>.row:nth-child(2)>a:nth-of-type(1){
-    background-color: #ffd951;
-}
-.block>.row:nth-child(2)>a:nth-of-type(2){
-    background-color: #ffdf69;
-}
-.block>.row:nth-child(3)>a:nth-of-type(1){
-    background-color: #fde382;
-}
-.block>.row:nth-child(3)>a:nth-of-type(2){
-    background-color: #ffea9f;
-}
 .menuAdd{
-    width: 100vw;
-    height: 570px;
+    min-width: 350px;
+    width: 50vw;
+    height: 300px;
     position: relative;
     padding: 10px;
-    z-index: 99999;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
 }
 .menuAdd>i.errorInfo{
     font-size: 14px;
     color: black;
 }
-.menuAdd.Lost{
-    background-color: #ff5c5c;
-}
 .menuAdd.Found{
     background-color: #5cb4ff;
-    height: 600px;
-    z-index: 9999;
+    z-index: 1;
 }
 .closeWindow{
     position: absolute;
@@ -173,6 +159,7 @@
     right: 0;
     background-color: transparent;
     border: none;
+    cursor: pointer;
 }
 .closeWindow>svg{
     font-size: 26px;
@@ -189,35 +176,189 @@
     margin-top: 15px;
     width: 90%;
 }
-.menuAdd>form>label{
-    margin-top: 20px;
-    color: white;
-    line-height: 40px;
+.radioButtons{
+    text-align: center;
+    color: #505050;
+    width: 100%;
 }
-.menuAdd>form>label>input{
-    float: right;
-    border: none;
-    height: 30px;
-    border-radius: 5px;
-    padding: 5px;
+.radioButtons>input[type="radio"]{
+    margin-top: 50px;
+    opacity: 0;
+    width: 0;
 }
-.menuAdd>form>input[type="submit"]{
-    margin-top: 15px;
-    margin-left: 155px;
+.radioButtons>label{
+    font-size: 22px;
+    margin-left: 15px;
+    border: 1px solid black;
     padding: 10px;
-    width: 90px;
-    border: none;
+    width: 250px;
+}
+.radioButtons>input[type="radio"]:checked + label{
+    background-color: #97ceff;
+    border: 1px solid white;
+    color: black;
+    width: 250px;
+}
+.arrows{
+    color: white;
+    text-align: center;
+    margin-top: 30px;
+    margin-left: 30px;
+    font-size: 26px;
+    display: flex;
+    flex-direction: row;
+}
+.arrows>p{
+    flex-basis: 60%;
+}
+.arrows>*{
+    flex-basis: 20%;
+}
+.arrows>svg{
+    background-color: #4485ff;
+    padding: 10px;
+    border-radius: 10px;
+}
+.addLabel{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: white;
+}
+.addLabel>input{
+    width: 250px;
+    height: 30px;
+    margin: 20px 0 0 40px;
+    border: 0;
     border-radius: 5px;
+    text-align: center;
 }
 .fileBtn{
     margin-left: 50px;
     margin-bottom: 20px;
     border: none;
-    background-color: #ddd;
-    color: black;
+    color: white;
 }
-
-@media (min-width: 768px) and (orientation: portrait){
+.arrows>input[type="submit"]{
+    margin-left: 100px;
+}
+.userMenu{
+    position: absolute;
+    z-index: 11;
+    left: 0;
+    background-color: #ffd12a;
+    padding: 10px;
+    font-size: 20px;
+    width: 45px;
+    color: black;
+    border-bottom-right-radius: 10px;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-top: none;
+    border-left: none;
+    cursor: pointer;
+}
+.dark-window{
+    position: absolute;
+    z-index: 9;
+    width: 100%;
+    height: calc(100% - 105px);
+    background-color: black;
+    opacity: 0.6;
+}
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.userPrompt{
+    z-index: 10;
+    position: absolute;
+    width: 320px;
+    height: 300px;
+    background-color: white;
+    opacity: 1;
+    margin-top: 700px;
+}
+.userPrompt>p{
+    width: 100%;
+    padding: 15px;
+    background-color: #ffcf23;
+    text-align: center;
+}
+.userPrompt>form{
+    display: flex;
+    flex-direction: column;
+    margin: 30px 40px;
+}
+.userPrompt>form>label{
+    margin-top: 10px;
+}
+.userPrompt>form>label>input{
+    margin-left: 15px;
+    width: 180px;
+    height: 25px;
+    border-radius: 10px;
+    border: 1px solid #777777;
+    text-align: center;
+}
+.userPrompt>form>label>svg{
+    font-size: 24px;
+    color: #777777;
+}
+.userPrompt>form>button{
+    margin: 30px auto;
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    background-color: #ffcf23;
+    width: 100px;
+}
+.userPrompt>form>a{
+    text-align: center;
+    color: #725900;
+}
+.userPanel{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.userPanel>*{
+    flex-basis: 50%;
+    height: 50%;
+    height: 124px;
+    text-align: center;
+    font-size: 14px;
+    color: black;
+    text-decoration: none;
+    transition: .3s;
+}
+.userPanel>*>svg{
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+.userPanel>a{
+    padding-top: 35px;
+}
+.userPanel>button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.userPanel>*:hover{
+    color: #ffc600;
+}
+p.err{
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    top: 60px;
+    text-align: center;
+    color: white;
+    background-color: #ff5c5c;
+    font-size: 14px;
+}
+/* @media (min-width: 768px) and (orientation: portrait){
     .menuAdd>form>label>input{
         float: center;
     }
@@ -240,7 +381,6 @@
     }
     .menuAdd{
         width: 50vw;
-        height: 570px;
         position: relative;
         padding: 10px;
         z-index: 99999;
@@ -251,7 +391,6 @@
     }
     .menuAdd.Found{
         margin-left: 50%;
-        height: 600px;
         border-top-left-radius: 15px;
         border-bottom-left-radius: 15px;
     }
@@ -259,4 +398,4 @@
         margin-top: 50px;
         margin-left: 800px;
     }
-}
+} */

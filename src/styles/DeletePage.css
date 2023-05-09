@@ -1,0 +1,35 @@
+.delete-page{
+    width: 100vw;
+    height: calc(100vh - 105px);
+    background-color: rgb(78, 78, 78);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.delete-page>p{
+    color: white;
+    text-align: center;
+}
+.delete-page>div{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.delete-page>div>button{
+    padding: 10px;
+    width: 70px;
+    margin: 0 20px;
+    background-color: rgb(255, 109, 109);
+    border: none;
+    color: white;
+}
+.delete-page>div>a{
+    width: 70px;
+    background-color: rgb(109, 255, 116);
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    margin: 0 20px;
+}

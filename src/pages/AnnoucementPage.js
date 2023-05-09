@@ -6,6 +6,10 @@ import '../styles/AnnoucementPage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faComment } from '@fortawesome/free-solid-svg-icons';
+
+import found_icon from '../images/found_pet.png';
+import lost_icon from '../images/lost_pet.png';
 
 const AnnoucementPage = () =>{
 
@@ -19,12 +23,41 @@ const AnnoucementPage = () =>{
     const [petRace, setPetRace] = useState('');
     const [contactPerson, setContactPerson] = useState('');
     const [contactPhone, setContactPhone] = useState('');
+    const [msgNick, setMsgNick] = useState('');
 
     const [imageUrl, setImageUrl] = useState('');
     const [imageGet, setImageGet] = useState('');
 
+    const [isLogged, setIsLogged] = useState(null);
+
+    useEffect(() => {
+        checkSession();    
+    }, []);
+
+    const checkSession = () => {
+        fetch('/checkSession', {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                setIsLogged(true)
+                return response.json();
+            } else {
+                setIsLogged(false);
+                console.log("Użytkownik nie zalogowany");
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    };
+
     useEffect(() =>{
-        fetch(`https://animalsmap.herokuapp.com/getAnnoucement/${id}`)
+        fetch(`http://localhost:3000/getAnnoucement/${id}`)
         .then(response => response.json())
         .then(data => {
             setCity(data.city);
@@ -36,11 +69,12 @@ const AnnoucementPage = () =>{
             setPetRace(data.race);
             setContactPerson(data.contactPerson);
             setContactPhone(data.contactPhone);
+            setMsgNick(data.nickname);
         })
     }, [id])
     
     useEffect(() =>{
-        fetch(`https://animalsmap.herokuapp.com/image/${id}`)
+        fetch(`/image/${id}`)
                 .then(response => {
                     setImageGet(true);
                     return response.blob();
@@ -94,7 +128,15 @@ const AnnoucementPage = () =>{
                         <p className='phone'><FontAwesomeIcon icon={faPhone} /> {contactPhone}</p>
                     </div>
                 </div>
+                {isLogged ? 
+                    <NavLink className='sendMsg' to={`/conversation/${msgNick}`}>
+                        Napisz wiadomość
+                    </NavLink> : null}
             </section>
+            {status === 'found' ? 
+            <img className='background' src={found_icon} alt='background' /> :
+            <img className='background' src={lost_icon} alt='background' />}
+            {/* <img className='background' src={icon} alt="background" /> */}
         </>
     )
 }

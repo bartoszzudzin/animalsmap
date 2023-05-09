@@ -1,0 +1,80 @@
+.signup-page{
+    background-color: white;
+    width: 100vw;
+    height: calc(100vh - 105px);
+    overflow: hidden;
+}
+.page-title{
+    margin-left: 0;
+    padding: 5px;
+    height: 47px;
+    text-align: center;
+    background-color: #ffd12a;
+    font-size: 24px;
+    letter-spacing: 3px;
+}
+.page-title-fixed{
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    padding: 5px;
+    height: 47px;
+    text-align: center;
+    background-color: #ffd12a;
+    font-size: 24px;
+    letter-spacing: 3px;
+    position: fixed;
+}
+.sign-up-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+.sign-up-form>label{
+    margin-top: 30px;
+    margin-right: 40px;
+}
+.sign-up-form>label>input{
+    margin-left: 15px;
+    width: 180px;
+    height: 25px;
+    border-radius: 10px;
+    border: 1px solid #777777;
+    text-align: center;
+}
+.sign-up-form>label>svg{
+    font-size: 30px;
+    margin-right: 30px;
+    color: #777777;
+}
+.sign-up-form>button{
+    margin: 30px auto;
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    background-color: #ffcf23;
+    width: 150px;
+}
+p.error{
+    background-color: rgb(255, 123, 123);
+    text-align: center;
+    padding: 5px;
+}
+p.succes{
+    position: absolute;
+    top: 0;
+    background-color: greenyellow;
+    text-align: center;
+    padding: 5px;
+}
+.avatar{
+    width: 150px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+}
+.editAvatar{
+    margin: 10px 0 0 50px;
+}

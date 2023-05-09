@@ -1,0 +1,129 @@
+.conversation-page{
+    background-color: white;
+    width: 100vw;
+    padding-bottom: 20%;
+    height: auto;
+}
+.send-message-form{
+    position: fixed;
+    bottom: 0;
+    background-color: #ffc600;
+    width: 100vw;
+    height: 130px;
+    padding: 15px;
+}
+.send-message-form>form{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.send-message-form>form>textarea{
+    flex-basis: 80%;
+    height: 90px;
+    padding: 5px;
+    font-family: Arial;
+    border-radius: 10px;
+    border: none;
+    resize: none;
+    outline: none;
+}
+.send-message-form>form>button{
+    flex-basis: 15%;
+    height: 50px;
+    margin-left: 5%;
+    border-radius: 50%;
+    border: none;
+    background-color: cornflowerblue;
+}
+.send-message-form>form>button>svg{
+    font-size: 24px;
+    color: white;
+}
+.from{
+    text-align: center;
+    margin: 0 auto;
+}
+.message-right{
+    margin: 10px 0px 0 10%;
+    background-color: #79ceff;
+    padding: 10px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 30px;
+    flex-basis: 70%;
+    height: auto;
+}
+.message-left{
+    margin: 10px 40px 0 18%;
+    background-color: #3cb8ff;
+    padding: 10px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 30px;
+    width: 70%;
+    float: left;
+    height: auto;
+}
+.clear-hyperlink{
+    text-decoration: none;
+    color: black;
+}
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.conversation{
+    padding-top: 15%;
+}
+.bottom{
+    width: 100vw;
+    height: 50px;
+    background-color: white;
+}
+p.date{
+    text-align: center;
+}
+.date-left{
+    float: left;
+    margin-left: 10px;
+}
+.message-cont{
+    display: flex;
+    flex-direction: row;
+}
+.avatar-right{
+    flex-basis: 10%;
+    max-width: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    position: absolute;
+    right: 0px;
+}
+.avatar-left{
+    flex-basis: 10%;
+    max-width: 50px;
+    border-radius: 50%;
+    margin-left: 10px;
+    position: absolute;
+    left: 0px;
+}
+.friend{
+    margin: 20px 20px;
+    padding: 10px;
+    border-radius: 25px;
+    height: 70px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.friend>p{
+    font-size: 26px;
+    margin-left: 10px;
+}
+.friend-avatar{
+    width: 50px;
+    border-radius: 50%;
+}
